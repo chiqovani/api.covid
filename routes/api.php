@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StatisticController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SummaryController;
+use App\Http\Controllers\ClientController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -21,8 +22,11 @@ Route::post('/login', [AuthController::class, 'login']);
 
 //sanctum protected routes
 Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::get('/statistics', [StatisticController::class, 'getStatistics']);
+    Route::get('/statistics', [ClientController::class, 'getCars']);
+    Route::get('/owners', [ClientController::class, 'getOwners']);
     Route::get('/summary', [SummaryController::class, 'getSummary']);
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/check', [AuthController::class, 'checkAuth']);
+    Route::post('/add_car', [ClientController::class, 'addCar']);
+    Route::post('/add_owner', [ClientController::class, 'addOwner']);
 });

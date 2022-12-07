@@ -5,11 +5,12 @@ namespace App\Http\Resources;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
- * @property mixed country
- * @property int death
- * @property int recovered
- * @property int confirmed
- * @property int country_id
+ * @property mixed owner
+ * @property int manufacturer_id
+ * @property int model
+ * @property string plate_number
+ * @property int price
+ * @property int id
  */
 
 class Statistics extends JsonResource
@@ -23,13 +24,14 @@ class Statistics extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'=>$this->country_id,
-            'name'=> $this->country->name,
-            'death'=>$this->death,
-            'recovered'=>$this->recovered,
-            'confirmed'=>$this->confirmed,
-            'code'=>$this->country->code,
-            'country_id'=>$this->country_id,
+            'id'=>$this->id,
+            'price'=>$this->price,
+            'model'=>$this->model,
+            'plate_number'=>$this->plate_number,
+            'personal_number'=>$this->owner->personal_number,
+            'phone_number'=>$this->owner->phone_number,
+            'mail'=>$this->owner->mail,
+            'full_name'=>$this->owner->full_name,
         ];
     }
 }
